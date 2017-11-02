@@ -1,0 +1,16 @@
+﻿
+@using PgDemo.Models
+@model IEnumerable<User>
+<table border="1">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.id_user)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.login)
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.role)</td>
+        </tr>
+    }
+</table>
+
