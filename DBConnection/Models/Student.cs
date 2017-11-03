@@ -12,9 +12,13 @@ namespace PgDemo.Models
     {
         [Key]
         public int id_student { get; set; }
+        [Required(ErrorMessage = "Пожалуйста, введите корректно имя")]
         public string f_name { get; set; }
+        [Required(ErrorMessage = "Пожалуйста, введите корректно фамилию")]
         public string l_name { get; set; }
+        [Required(ErrorMessage = "Пожалуйста, введите корректно возраст")]
         public int age { get; set; }
+        [Required(ErrorMessage = "Пожалуйста, введите корректно курс")]
         public int course { get; set; }
 
         [ForeignKey("User")]

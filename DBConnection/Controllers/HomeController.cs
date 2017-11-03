@@ -28,10 +28,18 @@ namespace DBConnection.Controllers
 
 
         [HttpGet]
-        public ViewResult EditingStudent(int? id)
+        public ActionResult EditingStudent(int? id)
         {
-            Student team = _context.Stud.Find(id);
-            return View(team);
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            Student student = _context.Stud.Find(id);
+            if (student == null)
+            {
+                return HttpNotFound();
+            }
+            return View(student);
         }
 
         [HttpPost]
@@ -39,12 +47,54 @@ namespace DBConnection.Controllers
         {
             if (ModelState.IsValid)
             {
-                return View("Thanks", student);
+                Student stud = _context.Stud.Find(student.id_student);
+                stud.f_name = student.f_name;
+                stud.l_name = student.l_name;
+                stud.age = student.age;
+                stud.course = student.course;
+                _context.SaveChanges();
+                return View("Index");
 
             }
             else
             {
-                return View();
+                Student stud = _context.Stud.Find(student.id_student);
+                return View(stud);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult EditingUser(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            User user = _context.Usr.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+
+        [HttpPost]
+        public ViewResult EditingUser(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                User us = _context.Usr.Find(user.id_user);
+                us.login = user.login;
+                us.password = user.password;
+                us.role = user.role;
+                _context.SaveChanges();
+                return View("User");
+
+            }
+            else
+            {
+                User us = _context.Usr.Find(user.id_user);
+                return View(us);
             }
         }
 

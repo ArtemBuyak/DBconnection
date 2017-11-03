@@ -1,5 +1,11 @@
 ﻿@model IEnumerable<PgDemo.Models.User>
 
+
+<h2>Список пользователей</h2>
+
+<p>
+    @Html.ActionLink("Добавить пользователя", "CreateIndex")
+</p>
 <table>
     <tr>
         <th>Login пользователя</th>
@@ -20,9 +26,20 @@
                 @Html.DisplayFor(modelItem => item.role)
             </td>
             <td>
-                @Html.ActionLink("Редактировать", "Edit", new { id = item.id_user }) |
+                @Html.ActionLink("Редактировать", "EditingUser", new { id = item.id_user }, new { onclick = "return confirm('Перейти на страницу редактирования пользователя?');" }) |
                 @Html.ActionLink("Удалить", "Delete", new { id = item.id_user })
             </td>
         </tr>
     }
     </table>
+<br>
+
+<p>
+    @Html.ActionLink("Список студентов", "Index")
+</p>
+<p>
+    @Html.ActionLink("Список учителей", "ViewTeacher")
+</p>
+<p>
+    @Html.ActionLink("Каталог курсов", "ViewCourse")
+</p>

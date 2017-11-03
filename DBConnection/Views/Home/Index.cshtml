@@ -4,6 +4,9 @@
 
 <h2>Список игроков</h2>
 
+<p>
+    @Html.ActionLink("Добавить студента", "CreateStudent")
+</p>
 <table>
     <tr>
         <th>Login студента</th>
@@ -27,10 +30,20 @@
                 @Html.DisplayFor(modelItem => item.course)
             </td>
             <td>
-                @Html.ActionLink("Редактировать", "EditingStudent", new { id = item.id_student }) |
-                @Html.ActionLink("Удалить", "Delete", new { id = item.id_student })
+                @Html.ActionLink("Редактировать", "EditingStudent", new { id = item.id_student }, new { onclick = "return confirm('Перейти на страницу редактирования студента?');" }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.id_student }, new { onclick = "return confirm('Вы действительно хотите удалить данного студента? Он также автоматически будет удален из списка прослушивающих курсы.');" })
             </td>
         </tr>
     }
 </table>
+<br>
+<p>
+    @Html.ActionLink("Список пользвателей", "Users")
+</p>
+<p>
+    @Html.ActionLink("Список учителей", "ViewTeacher")
+</p>
+<p>
+    @Html.ActionLink("Каталог курсов", "ViewCourse")
+</p>
 

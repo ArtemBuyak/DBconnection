@@ -12,8 +12,11 @@ namespace PgDemo.Models
     {
         [Key]
         public int id_user { get; set; }
+        [Required(ErrorMessage = "Пожалуйста, введите login корректо")]
         public string login { get; set; }
+        [Required(ErrorMessage = "Пожалуйста, введите корректно пароль")]
         public string password { get; set; }
+        [Required(ErrorMessage = "Пожалуйста, введите корректно роль пользователя")]
         public string role { get; set; }
 
         public ICollection<Student> Students { get; set; }
