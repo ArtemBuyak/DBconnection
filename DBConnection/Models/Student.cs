@@ -17,7 +17,8 @@ namespace PgDemo.Models
         public int age { get; set; }
         public int course { get; set; }
 
-        public int? user_id { get; set; }
+        [ForeignKey("User")]
+        public int? id_user { get; set; }
         public User User { get; set; }
 
         public ICollection<List> Lists { get; set; }

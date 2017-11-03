@@ -1,0 +1,57 @@
+﻿@model PgDemo.Models.Student
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Rsvpform</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <style>
+        body {
+            background: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel-success">
+        <div class="panel-heading text-center">
+            <h1>Структура ответа на приглашение</h1>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary()
+                <div class="form-group">
+                    <label>Имя:</label>
+                    @Html.TextBoxFor(x => x.f_name, new { @class = "form-control maxlength=30", @Value  = @Model.f_name })
+                </div>
+                    <div class="form-group">
+                        <label>Фамилия:</label>
+                        @Html.TextBoxFor(x => x.l_name, new { @class = "form-control", @Value = @Model.l_name })
+                    </div>
+                    <div class="form-group">
+                        <label>Возраст:</label>
+                        @Html.TextBoxFor(x => x.age, new { @class = "form-control", @Value = @Model.age })
+                    </div>
+                    <div class="form-group">
+                        <label>Курс:</label>
+                        @Html.TextBoxFor(x => x.age, new { @class = "form-control", @Value = @Model.course })
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" value="Отправить форму RSVP" class="btn btn-success" />
+                    </div>
+            }
+        </div>
+    </div>
+</body>
+</html>
+
+
+
