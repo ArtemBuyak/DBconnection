@@ -1,0 +1,71 @@
+﻿@model PgDemo.Models.Teacher
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Teacher</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <style>
+        body {
+            background: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel-success">
+        <div class="panel-heading text-center">
+            <h1>Форма создания нового преподавателя</h1>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary()
+                <div class="form-group">
+                    <label>Имя:</label>
+                    @Html.TextBoxFor(x => x.f_name, new { @class = "form-control maxlength=30", @Value = @Model.f_name })
+                </div>
+                <div class="form-group">
+                    <label>Фамилия:</label>
+                    @Html.TextBoxFor(x => x.l_name, new { @class = "form-control", @Value = @Model.l_name })
+                </div>
+                <div class="form-group">
+                    <label>Опыт работы:</label>
+                    @Html.TextBoxFor(x => x.Experience, new { @class = "form-control", @Value = @Model.Experience })
+                </div>
+                    <div class="form-group">
+                        <label>Возраст:</label>
+                        @Html.TextBoxFor(x => x.age, new { @class = "form-control", @Value = @Model.age })
+                    </div>
+                    <div class="form-group">
+                        <label>ID-преподавателя:</label>
+                        @Html.TextBoxFor(u => u.id_teacher, new { @class = "form-control", @Value = @Model.id_teacher, @readonly = "readonly" })
+                    </div>
+                    <div class="form-group">
+                        <label>Выберите пользователя</label>
+                        @Html.DropDownListFor(x => x.id_user, new SelectList(ViewBag.Li, "id_user", "login"), new { @class = "form-control" })
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" value="Сохранение преподавателя" class="btn btn-success" />
+                        <input type="button" class="btn btn-success" value="Переход к списку преподавателей" onclick="window.location.href='@Url.Action("Teachers", "Home")';" />
+
+                    </div>
+
+            }
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+

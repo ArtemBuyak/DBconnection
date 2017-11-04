@@ -129,7 +129,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Courses.cs" />
-    <Compile Include="Models\List.cs" />
     <Compile Include="Models\PGDbContext.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Teacher.cs" />
@@ -150,6 +149,14 @@
     <Content Include="Views\Home\Users.cshtml" />
     <Content Include="Views\Home\EditingStudent.cshtml" />
     <Content Include="Views\Home\EditingUser.cshtml" />
+    <Content Include="Views\Home\Teachers.cshtml" />
+    <Content Include="Views\Home\EditingTeacher.cshtml" />
+    <Content Include="Views\Home\Courses.cshtml" />
+    <Content Include="Views\Home\EditingCourse.cshtml" />
+    <Content Include="Views\Home\CreateUser.cshtml" />
+    <Content Include="Views\Home\CreateStudent.cshtml" />
+    <Content Include="Views\Home\CreateTeacher.cshtml" />
+    <Content Include="Views\Home\CreateCourse.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

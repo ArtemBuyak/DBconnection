@@ -1,4 +1,4 @@
-﻿@model PgDemo.Models.Student
+﻿@model PgDemo.Models.Teacher
 
 @{
     Layout = null;
@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Student</title>
+    <title>Teacher</title>
     <link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
@@ -22,7 +22,7 @@
 <body>
     <div class="panel-success">
         <div class="panel-heading text-center">
-            <h1>Форма редактирования данных студента</h1>
+            <h1>Форма редактирования данных преподавателя</h1>
         </div>
         <div class="panel-body">
             @using (Html.BeginForm())
@@ -30,23 +30,23 @@
                 @Html.ValidationSummary()
                 <div class="form-group">
                     <label>Имя:</label>
-                    @Html.TextBoxFor(x => x.f_name, new { @class = "form-control maxlength=30", @Value  = @Model.f_name })
+                    @Html.TextBoxFor(x => x.f_name, new { @class = "form-control maxlength=30", @Value = @Model.f_name })
+                </div>
+                <div class="form-group">
+                    <label>Фамилия:</label>
+                    @Html.TextBoxFor(x => x.l_name, new { @class = "form-control", @Value = @Model.l_name })
                 </div>
                     <div class="form-group">
-                        <label>Фамилия:</label>
-                        @Html.TextBoxFor(x => x.l_name, new { @class = "form-control", @Value = @Model.l_name })
+                        <label>Опыт работы:</label>
+                        @Html.TextBoxFor(x => x.Experience, new { @class = "form-control", @Value = @Model.Experience })
                     </div>
                     <div class="form-group">
                         <label>Возраст:</label>
                         @Html.TextBoxFor(x => x.age, new { @class = "form-control", @Value = @Model.age })
                     </div>
                     <div class="form-group">
-                        <label>Курс:</label>
-                        @Html.TextBoxFor(x => x.course, new { @class = "form-control", @Value = @Model.course })
-                    </div>
-                    <div class="form-group">
-                        <label>ID-студента:</label>
-                        @Html.TextBoxFor(u => u.id_student, new { @class = "form-control", @Value = @Model.id_student, @readonly = "readonly" })
+                        <label>ID-преподавателя:</label>
+                        @Html.TextBoxFor(u => u.id_teacher, new { @class = "form-control", @Value = @Model.id_teacher, @readonly = "readonly" })
                     </div>
                     <div class="form-group">
                         <label>ID-user:</label>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="text-center">
                         <input type="submit" value="Сохранение изменений" class="btn btn-success" />
-                        <input type="button" class ="btn btn-success" value="Переход к списку студентов" onclick="window.location.href='@Url.Action("Index", "Home")';" />
+                        <input type="button" class="btn btn-success" value="Переход к списку преподавателей" onclick="window.location.href='@Url.Action("Teachers", "Home")';" />
 
                     </div>
 
@@ -63,6 +63,9 @@
     </div>
 </body>
 </html>
+
+
+
 
 
 

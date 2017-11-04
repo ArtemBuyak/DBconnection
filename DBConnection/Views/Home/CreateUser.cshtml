@@ -36,20 +36,21 @@
                     <label>Пароль:</label>
                     @Html.TextBoxFor(x => x.password, new { @class = "form-control", @Value = @Model.password })
                 </div>
+
                 <div class="form-group">
                     <label>Выберите роль пользователя?</label>
                     @Html.DropDownListFor(x => x.role, new[] {
-                            new SelectListItem() { Text = "Администратор", Value = "0", Selected = true},
+                            new SelectListItem() { Text = "Администратор", Value = "0"},
                             new SelectListItem() { Text = "Студент", Value = "1"},
                             new SelectListItem() { Text = "Учитель", Value = "2"},
-                        }, new { @class = "form-control" })
+                        }, "Выберите вариант", new { @class = "form-control" })
                 </div>
-                <div class="form-group">
-                    <label>ID-user:</label>
-                    @Html.TextBoxFor(u => u.id_user, new { @class = "form-control", @Value = @Model.id_user, @readonly = "readonly" })
-                </div>
+                    <div class="form-group">
+                        <label>ID-user:</label>
+                        @Html.TextBoxFor(u => u.id_user, new { @class = "form-control", @Value = @Model.id_user, @readonly = "readonly" })
+                    </div>
                     <div class="text-center">
-                        <input type="submit" value="Сохранение изменений" class="btn btn-success" />
+                        <input type="submit" value="Сохранение пользователя" class="btn btn-success" />
                         <input type="button" class="btn btn-success" value="Переход к списку пользователей" onclick="window.location.href='@Url.Action("Users", "Home")';" />
 
                     </div>
@@ -59,3 +60,6 @@
     </div>
 </body>
 </html>
+
+
+

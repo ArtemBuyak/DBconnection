@@ -1,10 +1,23 @@
 ﻿@model IEnumerable<PgDemo.Models.User>
 
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>User</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <style>
+        body {
+            background: #f1f1f1;
+        }
+    </style>
+</head>
+
 
 <h2>Список пользователей</h2>
 
 <p>
-    @Html.ActionLink("Добавить пользователя", "CreateIndex")
+    @Html.ActionLink("Добавить пользователя", "CreateUser")
 </p>
 <table>
     <tr>
@@ -26,8 +39,7 @@
                 @Html.DisplayFor(modelItem => item.role)
             </td>
             <td>
-                @Html.ActionLink("Редактировать", "EditingUser", new { id = item.id_user }, new { onclick = "return confirm('Перейти на страницу редактирования пользователя?');" }) |
-                @Html.ActionLink("Удалить", "Delete", new { id = item.id_user })
+                @Html.ActionLink("Редактировать", "EditingUser", new { id = item.id_user }, new { onclick = "return confirm('Перейти на страницу редактирования пользователя?');" })
             </td>
         </tr>
     }
@@ -38,8 +50,12 @@
     @Html.ActionLink("Список студентов", "Index")
 </p>
 <p>
-    @Html.ActionLink("Список учителей", "ViewTeacher")
+    @Html.ActionLink("Список учителей", "Teachers")
 </p>
 <p>
-    @Html.ActionLink("Каталог курсов", "ViewCourse")
+    @Html.ActionLink("Каталог курсов", "Courses")
 </p>
+
+<div class="success">
+    <p>@ViewData["Success"]</p>
+</div>

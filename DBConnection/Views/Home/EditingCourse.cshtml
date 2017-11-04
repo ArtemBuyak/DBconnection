@@ -1,0 +1,68 @@
+﻿@model PgDemo.Models.Course
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Course</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <style>
+        body {
+            background: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel-success">
+        <div class="panel-heading text-center">
+            <h1>Форма редактирования данных курса</h1>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary()
+                <div class="form-group">
+                    <label>Название:</label>
+                    @Html.TextBoxFor(x => x.name, new { @class = "form-control maxlength=30", @Value = @Model.name })
+                </div>
+                <div class="form-group">
+                    <label>Продолжительность:</label>
+                    @Html.TextBoxFor(x => x.continuance, new { @class = "form-control", @Value = @Model.continuance })
+                </div>
+                    <div class="form-group">
+                        <label>Количество людей:</label>
+                        @Html.TextBoxFor(x => x.count_people, new { @class = "form-control", @Value = @Model.count_people })
+                    </div>
+                    <div class="form-group">
+                        <label>Описание курса:</label>
+                        @Html.TextBoxFor(x => x.description, new { @class = "form-control", @Value = @Model.description })
+                    </div>
+                    <div class="form-group">
+                        <label>ID-курса:</label>
+                        @Html.TextBoxFor(u => u.id_course, new { @class = "form-control", @Value = @Model.id_course, @readonly = "readonly" })
+                    </div>
+                    <div class="form-group">
+                        <label>ID-учителся:</label>
+                        @Html.TextBoxFor(u => u.id_teacher, new { @class = "form-control", @Value = @Model.id_teacher, @readonly = "readonly" })
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" value="Сохранение изменений" class="btn btn-success" />
+                        <input type="button" class="btn btn-success" value="Переход к списку курсов" onclick="window.location.href='@Url.Action("Courses", "Home")';" />
+
+                    </div>
+
+            }
+        </div>
+    </div>
+</body>
+</html>
+
+
+

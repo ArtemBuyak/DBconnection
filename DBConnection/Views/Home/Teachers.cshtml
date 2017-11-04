@@ -1,9 +1,9 @@
 ﻿
-@model IEnumerable<PgDemo.Models.Student>
+@model IEnumerable<PgDemo.Models.Teacher>
 
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Student</title>
+    <title>Teacher</title>
     <link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
@@ -11,22 +11,22 @@
         body {
             background: #f1f1f1;
         }
-
     </style>
 </head>
 
-<h2>Список студентов</h2>
+
+<h2>Список преподавателей</h2>
 
 <p>
-    @Html.ActionLink("Добавить студента", "CreateStudent")
+    @Html.ActionLink("Добавить преподавателя", "CreateTeacher")
 </p>
 <table>
     <tr>
-        <th>Login студента</th>
+        <th>Login преподавателя</th>
         <th>Имя</th>
         <th>Фамилия</th>
+        <th>Стаж</th>
         <th>Возраст</th>
-        <th>Курс</th>
         <th></th>
     </tr>
 
@@ -38,13 +38,13 @@
                 @Html.DisplayFor(modelItem => item.f_name)
             </td>
             <td>@Html.DisplayFor(modelItem => item.l_name)</td>
-            <td>@Html.DisplayFor(modelItem => item.age)</td>
+            <td>@Html.DisplayFor(modelItem => item.Experience)</td>
             <td>
-                @Html.DisplayFor(modelItem => item.course)
+                @Html.DisplayFor(modelItem => item.age)
             </td>
             <td>
-                @Html.ActionLink("Редактировать", "EditingStudent", new { id = item.id_student }, new { onclick = "return confirm('Перейти на страницу редактирования студента?');" }) |
-                @Html.ActionLink("Удалить", "DeleteStudent", new { id = item.id_student }, new { onclick = "return confirm('Вы действительно хотите удалить данного студента? Он также автоматически будет удален из списка прослушивающих курсы.');" })
+                @Html.ActionLink("Редактировать", "EditingTeacher", new { id = item.id_teacher }, new { onclick = "return confirm('Перейти на страницу редактирования преподавателя?');" }) |
+                @Html.ActionLink("Удалить", "DeleteTeacher", new { id = item.id_teacher }, new { onclick = "return confirm('Вы действительно хотите удалить данного преподавателя? Он также автоматически будет удален из списка списка курсов.');" })
             </td>
         </tr>
     }
@@ -54,7 +54,7 @@
     @Html.ActionLink("Список пользвателей", "Users")
 </p>
 <p>
-    @Html.ActionLink("Список учителей", "Teachers")
+    @Html.ActionLink("Список студентов", "Index")
 </p>
 <p>
     @Html.ActionLink("Каталог курсов", "Courses")

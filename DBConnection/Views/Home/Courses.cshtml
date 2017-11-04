@@ -1,0 +1,65 @@
+﻿
+@model IEnumerable<PgDemo.Models.Course>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Course</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <style>
+        body {
+            background: #f1f1f1;
+        }
+    </style>
+</head>
+
+<h2>Список курсов</h2>
+
+<p>
+    @Html.ActionLink("Добавить курс", "CreateCourse")
+</p>
+<table>
+    <tr>
+        <th>Название курса</th>
+        <th>Имя преподавателя</th>
+        <th>Фамилия преподавателя</th>
+        <th>Продожительность</th>
+        <th>Количество людей</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.name)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Teacher.f_name)
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.Teacher.l_name)</td>
+            <td>@Html.DisplayFor(modelItem => item.continuance)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.count_people)
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "EditingCourse", new { id = item.id_course}, new { onclick = "return confirm('Перейти на страницу редактирования курса?');" }) |
+                @Html.ActionLink("Удалить", "DeleteCourse", new { id = item.id_course }, new { onclick = "return confirm('Вы действительно хотите удалить данный курс? .');" })
+            </td>
+        </tr>
+    }
+</table>
+<br>
+<p>
+    @Html.ActionLink("Список пользвателей", "Users")
+</p>
+<p>
+    @Html.ActionLink("Список учителей", "Teachers")
+</p>
+<p>
+    @Html.ActionLink("Список студентов", "Index")
+</p>
+
+<div class="success">
+    <p>@ViewData["Success"]</p>
+</div>
+
