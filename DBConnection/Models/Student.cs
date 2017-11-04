@@ -13,7 +13,6 @@ namespace PgDemo.Models
         [Key]
         public int id_student { get; set; }
         [Required(ErrorMessage = "Пожалуйста, введите корректно имя")]
-        [RegularExpression("[2-9][0-9]", ErrorMessage = "Вы ввели некорректный возраст, не в диапазон от 20 до 99.")]
         public string f_name { get; set; }
         [Required(ErrorMessage = "Пожалуйста, введите корректно фамилию")]
         public string l_name { get; set; }

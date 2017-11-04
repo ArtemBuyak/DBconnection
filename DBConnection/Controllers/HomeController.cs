@@ -249,8 +249,8 @@ namespace DBConnection.Controllers
         public ActionResult CreateStudent()
         {
             Student st = new Student();
-            var us = _context.Usr.Where(c => c.role == "1" );
-            ViewBag.Li = new List<User> ();
+            var us = _context.Usr.Where(c => c.role == "1");
+            ViewBag.Li = new List<User>();
             List<User> li = new List<User>();
             foreach (User i in us)
             {
@@ -265,9 +265,18 @@ namespace DBConnection.Controllers
         {
             if (ModelState.IsValid)
             {
+                var temp = _context.Stud.ToList();
+                foreach (Student s in temp)
+                {
+                    if (s.id_user == student.id_user)
+                    {
+                        ViewData["Error"] = "Вы не можете использовать данный id-пользователя, т.к. под ним уже зарегистрирован другой студент. Смените его или создайте нового пользователя.";
+                        return CreateStudent();
+                    }
+                }
                 Student st = new Student
                 {
-                    f_name  = student.f_name,
+                    f_name = student.f_name,
                     l_name = student.l_name,
                     age = student.age,
                     course = student.course,
@@ -282,7 +291,15 @@ namespace DBConnection.Controllers
             }
             else
             {
-                User us = new User();
+                Student us = new Student();
+                var k = _context.Usr.Where(c => c.role == "1");
+                ViewBag.Li = new List<User>();
+                List<User> li = new List<User>();
+                foreach (User i in k)
+                {
+                    li.Add(i);
+                }
+                ViewBag.Li = li;
                 return View(us);
             }
         }
@@ -308,6 +325,21 @@ namespace DBConnection.Controllers
         {
             if (ModelState.IsValid)
             {
+                var temp = _context.Teach.ToList();
+                foreach (Teacher s in temp)
+                {
+                    if (s.id_user == teacher.id_user)
+                    {
+                        ViewData["Error"] = "Вы не можете использовать данный id-пользователя, т.к. под ним уже зарегистрирован другой преподаватель. Смените его или создайте нового пользователя.";
+                        return CreateTeacher();
+                    }
+                }
+
+                if (teacher.Experience > teacher.age || (teacher.age - teacher.Experience) < 20)
+                {
+                    ViewData["Error"] = "Вы ввели неверный возраст, либо неверный опыт работы. Возраст не может быть меньше опыта, и не может разница между ними быть меньше 25.";
+                    return CreateTeacher();
+                }
                 Teacher tch = new Teacher
                 {
                     f_name = teacher.f_name,
@@ -325,7 +357,15 @@ namespace DBConnection.Controllers
             }
             else
             {
-                User us = new User();
+                Teacher us = new Teacher();
+                var k = _context.Usr.Where(c => c.role == "2");
+                ViewBag.Li = new List<User>();
+                List<User> li = new List<User>();
+                foreach (User i in k)
+                {
+                    li.Add(i);
+                }
+                ViewBag.Li = li;
                 return View(us);
             }
         }
@@ -388,7 +428,7 @@ namespace DBConnection.Controllers
                     continuance = course.continuance,
                     count_people = course.count_people,
                     id_teacher = course.id_teacher,
-                    description = course.description                   
+                    description = course.description
 
                 };
                 _context.Course.Add(cour);
@@ -399,7 +439,15 @@ namespace DBConnection.Controllers
             }
             else
             {
-                User us = new User();
+                Course us = new Course();
+                var k = _context.Teach.ToList();
+                ViewBag.Li = new List<Teacher>();
+                List<Teacher> li = new List<Teacher>();
+                foreach (Teacher i in k)
+                {
+                    li.Add(i);
+                }
+                ViewBag.Li = li;
                 return View(us);
             }
         }
