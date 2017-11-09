@@ -210,6 +210,39 @@ namespace DBConnection.Controllers
         }
 
 
+        public ActionResult DeleteUser(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            User user = _context.Usr.Where(c => c.id_user == id).FirstOrDefault();
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            Teacher teacher = _context.Teach.Where(c => c.id_user == id).FirstOrDefault();
+            if (teacher != null)
+            {
+                var cou = _context.Course.Where(c => c.id_teacher == id);
+                foreach (Course i in cou)
+                {
+                    _context.Course.Remove(i);
+                }
+                _context.Teach.Remove(teacher);
+            }
+            Student student = _context.Stud.Where(c => c.id_user == id).FirstOrDefault();
+            if (student != null)
+            {
+                _context.Stud.Remove(student);
+            }
+            _context.Usr.Remove(user);
+            _context.SaveChanges();
+            ViewData["Success"] = "Пользователь успешно удален из списка!";
+            return View("Users", _context.Usr.ToList());
+        }
+
         public ActionResult DeleteCourse(int? id)
         {
             if (id == null)
